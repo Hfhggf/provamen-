@@ -3,7 +3,7 @@ export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Metodo non consentito' });
     }
-
+ 
     const token = process.env.TELEGRAM_TOKEN;
     const chat_id = process.env.CHAT_ID;
     const { messaggio } = req.body;
