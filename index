@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Bar Papà - Ordina dal Tavolo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #111;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .menu-item input {
+            width: 60px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        .result {
+            margin-top: 20px;
+            background: #e9ffe9;
+            padding: 10px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🍹 Bar Papà</h1>
+    <p>Ordina comodamente dal tuo tavolo</p>
+</header>
+
+<div class="container">
+
+    <label>Numero Tavolo:</label>
+    <input type="number" id="tavolo" placeholder="Es. 5">
+
+    <h3>Menù</h3>
+
+    <div class="menu-item">
+        <span>🍕 Pizza Margherita - €8</span>
+        <input type="number" min="0" value="0" id="pizza">
+    </div>
+
+    <div class="menu-item">
+        <span>🍔 Panino Hamburger - €7</span>
+        <input type="number" min="0" value="0" id="panino">
+    </div>
+
+    <div class="menu-item">
+        <span>🥗 Insalata - €6</span>
+        <input type="number" min="0" value="0" id="insalata">
+    </div>
+
+    <div class="menu-item">
+        <span>🥤 Coca Cola - €3</span>
+        <input type="number" min="0" value="0" id="coca">
+    </div>
+
+    <div class="menu-item">
+        <span>🍰 Tiramisu - €5</span>
+        <input type="number" min="0" value="0" id="tiramisu">
+    </div>
+
+    <button onclick="inviaOrdine()">Invia Ordine</button>
+
+    <div class="result" id="result" style="display:none;"></div>
+
+</div>
+
+<script>
+function inviaOrdine() {
+
+    let tavolo = document.getElementById("tavolo").value;
+    let pizza = document.getElementById("pizza").value;
+    let panino = document.getElementById("panino").value;
+    let insalata = document.getElementById("insalata").value;
+    let coca = document.getElementById("coca").value;
+    let tiramisu = document.getElementById("tiramisu").value;
+
+    if (tavolo === "") {
+        alert("Inserisci il numero del tavolo!");
+        return;
+    }
+
+    let ordine = `Ordine Tavolo ${tavolo}:\n`;
+
+    if (pizza > 0) ordine += `- ${pizza} Pizza\n`;
+    if (panino > 0) ordine += `- ${panino} Panino\n`;
+    if (insalata > 0) ordine += `- ${insalata} Insalata\n`;
+    if (coca > 0) ordine += `- ${coca} Coca Cola\n`;
+    if (tiramisu > 0) ordine += `- ${tiramisu} Tiramisu\n`;
+
+    if (ordine === `Ordine Tavolo ${tavolo}:\n`) {
+        alert("Non hai selezionato nulla!");
+        return;
+    }
+
+    document.getElementById("result").style.display = "block";
+    document.getElementById("result").innerText = ordine;
+}
+</script>
+
+</body>
+</html>
